@@ -1,6 +1,5 @@
-import { ArrowRight, Circle, Plus } from 'lucide-react';
 import Hero from './components/Hero';
-import Capabilities from './components/Capabilities';
+import Process from './components/Process';
 import BusinessOperations from './components/BusinessOperations';
 import Footer from './components/Footer';
 
@@ -8,7 +7,7 @@ function App() {
   return (
     <div className="min-h-screen bg-[#f5f5f0]">
       <Hero />
-      <Capabilities />
+      <Process />
       <BusinessOperations />
       <Footer />
     </div>

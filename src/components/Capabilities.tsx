@@ -14,13 +14,8 @@ export default function Capabilities() {
         <div className="bg-gradient-to-br from-[#1a1a1a] to-[#0a0a0a] rounded-[32px] p-12 text-white shadow-2xl">
           <div className="flex items-start justify-between">
             <div>
-              <div className="flex items-center gap-2 mb-8">
-                <Sparkles size={14} className="text-gray-500" />
-                <span className="text-[12px] text-gray-500 uppercase tracking-[0.15em] font-medium">
-                  What we do
-                </span>
-              </div>
-              <h2 className="text-[64px] font-normal tracking-[-0.02em] leading-none">Capabilities.</h2>
+              
+              <h2 className="text-[64px] font-normal tracking-[-0.02em] leading-none">Process</h2>
             </div>
           </div>
 

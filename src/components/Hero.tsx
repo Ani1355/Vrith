@@ -1,4 +1,5 @@
 import { ArrowRight, Code, Zap, Target, Shield } from 'lucide-react';
+import WhyVrithLabs from './WhyVrithLabs';
 
 export default function Hero() {
   return (
@@ -12,7 +13,7 @@ export default function Hero() {
         <div className="w-full max-w-[960px] bg-[#f8f8f6] rounded-[32px] shadow-[0_20px_80px_rgba(0,0,0,0.3)] overflow-hidden">
           <header className="flex items-center justify-between px-12 py-7">
             <div className="flex items-center gap-2">
-              <span className="text-[15px] font-semibold tracking-tight">Vrith</span>
+              <span className="text-[22px] font-semibold tracking-tight">Vrith labs</span>
             </div>
             <nav className="flex items-center gap-9 text-[14px] font-medium">
               <a href="#" className="text-gray-700 hover:text-black transition-colors">Process</a>
@@ -27,19 +28,14 @@ export default function Hero() {
 
           <div className="px-12 pt-8 pb-12">
             <h1 className="text-[72px] leading-[1.05] font-normal mb-7 tracking-[-0.02em]">
-              We're Relay,{' '}
-              <span className="inline-flex items-center justify-center w-[72px] h-[72px] bg-[#1a1a1a] text-white rounded-[16px] text-4xl align-middle mx-1">
-                ⚛️
-              </span>{' '}
-              a<br />studio crafting<br />digital experiences{' '}
-              <span className="inline-flex items-center justify-center w-[72px] h-[72px] bg-[#1a1a1a] text-white rounded-[16px] text-4xl align-middle mx-1">
-                ✈️
-              </span>{' '}
-              and brands
+            From Concept  {' '}
+              
+              <br />to Users in 21 Days<br />
+              
             </h1>
 
             <p className="text-[15px] leading-[1.6] text-gray-700 mb-7 max-w-[680px]">
-              From idea to production. Product strategy, engineering, and delivery — paired with obsessive attention to performance, DX, and accessibility.
+            Founder-led, AI-powered, done-for-you MVPs and landing pages. From idea to launch, Vrith Labs moves at startup speed.
             </p>
 
             <div className="flex flex-wrap gap-2.5 mb-9">
@@ -70,6 +66,11 @@ export default function Hero() {
                 View work
               </button>
             </div>
+          </div>
+
+          {/* Why Vrith Labs Section - Black Box Inside White Container */}
+          <div className="px-12 pb-12 mt-8">
+            <WhyVrithLabs />
           </div>
         </div>
       </div>

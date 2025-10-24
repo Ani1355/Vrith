@@ -8,7 +8,7 @@ function App() {
     <div className="min-h-screen bg-[#f5f5f0]">
       <Hero />
       <Process />
-      <BusinessOperations />
+      <Gallery4 />
       <Footer />
     </div>
   );

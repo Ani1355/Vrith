@@ -17,23 +17,23 @@ export default function WhyVrithLabs() {
                  <h3 className="text-xl font-semibold mb-6 text-white">Traditional Way</h3>
                  <ul className="space-y-4 text-sm text-gray-300">
                    <li className="flex items-start gap-3">
-                     <Circle size={16} className="mt-1 flex-shrink-0 text-red-400" />
+                     <Circle size={16} className="mt-1 flex-shrink-0 text-error" />
                      <span>3-6 months for MVP launch</span>
                    </li>
                    <li className="flex items-start gap-3">
-                     <Circle size={16} className="mt-1 flex-shrink-0 text-red-400" />
+                     <Circle size={16} className="mt-1 flex-shrink-0 text-error" />
                      <span>Slow process, multi-team, endless handoffs</span>
                    </li>
                    <li className="flex items-start gap-3">
-                     <Circle size={16} className="mt-1 flex-shrink-0 text-red-400" />
+                     <Circle size={16} className="mt-1 flex-shrink-0 text-error" />
                      <span>Hourly billing, unpredictable cost</span>
                    </li>
                    <li className="flex items-start gap-3">
-                     <Circle size={16} className="mt-1 flex-shrink-0 text-red-400" />
+                     <Circle size={16} className="mt-1 flex-shrink-0 text-error" />
                      <span>Overbuilt features, delayed market validation</span>
                    </li>
                    <li className="flex items-start gap-3">
-                     <Circle size={16} className="mt-1 flex-shrink-0 text-red-400" />
+                     <Circle size={16} className="mt-1 flex-shrink-0 text-error" />
                      <span>High risk, results come late</span>
                    </li>
                  </ul>
@@ -44,23 +44,23 @@ export default function WhyVrithLabs() {
                  <h3 className="text-xl font-semibold mb-6 text-white">Vrith Labs Way</h3>
                  <ul className="space-y-4 text-sm text-gray-300">
                    <li className="flex items-start gap-3">
-                     <Plus size={16} className="mt-1 flex-shrink-0 text-green-400" />
+                     <Plus size={16} className="mt-1 flex-shrink-0 text-success" />
                      <span>21 days for MVP launch</span>
                    </li>
                    <li className="flex items-start gap-3">
-                     <Plus size={16} className="mt-1 flex-shrink-0 text-green-400" />
+                     <Plus size={16} className="mt-1 flex-shrink-0 text-success" />
                      <span>One team, founder-focused, rapid execution</span>
                    </li>
                    <li className="flex items-start gap-3">
-                     <Plus size={16} className="mt-1 flex-shrink-0 text-green-400" />
+                     <Plus size={16} className="mt-1 flex-shrink-0 text-success" />
                      <span>Fixed, all-inclusive, transparent pricing</span>
                    </li>
                    <li className="flex items-start gap-3">
-                     <Plus size={16} className="mt-1 flex-shrink-0 text-green-400" />
+                     <Plus size={16} className="mt-1 flex-shrink-0 text-success" />
                      <span>Lean core features, instant market feedback</span>
                    </li>
                    <li className="flex items-start gap-3">
-                     <Plus size={16} className="mt-1 flex-shrink-0 text-green-400" />
+                     <Plus size={16} className="mt-1 flex-shrink-0 text-success" />
                      <span>Fast, launch-ready MVP, ready for feedback</span>
                    </li>
                  </ul>

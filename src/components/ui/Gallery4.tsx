@@ -1,15 +1,5 @@
-"use client";
-
-import { ArrowLeft, ArrowRight } from "lucide-react";
-import { useEffect, useState } from "react";
-
-import { Button } from "@/components/ui/button";
-import {
-  Carousel,
-  CarouselApi,
-  CarouselContent,
-  CarouselItem,
-} from "@/components/ui/carousel";
+import { ArrowRight } from "lucide-react";
+import { ScrollAnimation } from './ScrollAnimation';
 
 export interface Gallery4Item {
   id: string;
@@ -22,7 +12,7 @@ export interface Gallery4Item {
 export interface Gallery4Props {
   title?: string;
   description?: string;
-  items: Gallery4Item[];
+  items?: Gallery4Item[];
 }
 
 const data = [
@@ -78,121 +68,87 @@ const Gallery4 = ({
   description = "Discover how we've helped startups and enterprises build exceptional digital products. These case studies showcase our expertise in delivering scalable, user-focused solutions that drive real business results.",
   items = data,
 }: Gallery4Props) => {
-  const [carouselApi, setCarouselApi] = useState<CarouselApi>();
-  const [canScrollPrev, setCanScrollPrev] = useState(false);
-  const [canScrollNext, setCanScrollNext] = useState(false);
-  const [currentSlide, setCurrentSlide] = useState(0);
-
-  useEffect(() => {
-    if (!carouselApi) {
-      return;
-    }
-    const updateSelection = () => {
-      setCanScrollPrev(carouselApi.canScrollPrev());
-      setCanScrollNext(carouselApi.canScrollNext());
-      setCurrentSlide(carouselApi.selectedScrollSnap());
-    };
-    updateSelection();
-    carouselApi.on("select", updateSelection);
-    return () => {
-      carouselApi.off("select", updateSelection);
-    };
-  }, [carouselApi]);
-
   return (
-    <section className="py-20 px-4 bg-[#f8f8f6]">
+    <section className="py-20 px-4 bg-primary-50">
       <div className="max-w-[1320px] mx-auto">
-        <div className="mb-8 flex items-end justify-between md:mb-14 lg:mb-16">
-          <div className="flex flex-col gap-4">
-            <div className="text-[12px] text-gray-500 uppercase tracking-[0.15em] mb-3 font-medium">
-              (02) PORTFOLIO
+        <ScrollAnimation animation="slideUp">
+          <div className="mb-8 flex items-end justify-between md:mb-14 lg:mb-16">
+            <div className="flex flex-col gap-4">
+              <div className="text-[12px] text-gray-500 uppercase tracking-[0.15em] mb-3 font-medium">
+                (02) PORTFOLIO
+              </div>
+              <h2 className="text-[40px] font-normal tracking-[-0.01em] mb-4 text-[#1a1a1a]">
+                {title}
+              </h2>
+              <p className="max-w-lg text-[14px] text-gray-600 leading-relaxed">{description}</p>
             </div>
-            <h2 className="text-[40px] font-normal tracking-[-0.01em] mb-4">
-              {title}
-            </h2>
-            <p className="max-w-lg text-[14px] text-gray-600 leading-relaxed">{description}</p>
           </div>
-          <div className="hidden shrink-0 gap-2 md:flex">
-            <Button
-              size="icon"
-              variant="ghost"
-              onClick={() => {
-                carouselApi?.scrollPrev();
-              }}
-              disabled={!canScrollPrev}
-              className="disabled:pointer-events-auto h-10 w-10 rounded-full border border-gray-200 hover:bg-gray-50"
-            >
-              <ArrowLeft className="size-5" />
-            </Button>
-            <Button
-              size="icon"
-              variant="ghost"
-              onClick={() => {
-                carouselApi?.scrollNext();
-              }}
-              disabled={!canScrollNext}
-              className="disabled:pointer-events-auto h-10 w-10 rounded-full border border-gray-200 hover:bg-gray-50"
-            >
-              <ArrowRight className="size-5" />
-            </Button>
-          </div>
-        </div>
-      </div>
-      <div className="w-full">
-        <Carousel
-          setApi={setCarouselApi}
-          opts={{
-            breakpoints: {
-              "(max-width: 768px)": {
-                dragFree: true,
-              },
-            },
-          }}
-        >
-          <CarouselContent className="ml-0 2xl:ml-[max(8rem,calc(50vw-700px))] 2xl:mr-[max(0rem,calc(50vw-700px))]">
-            {items.map((item) => (
-              <CarouselItem
-                key={item.id}
-                className="max-w-[320px] pl-[20px] lg:max-w-[360px]"
-              >
-                <a href={item.href} className="group rounded-xl">
-                  <div className="group relative h-full min-h-[27rem] max-w-full overflow-hidden rounded-xl md:aspect-[5/4] lg:aspect-[16/9] border border-gray-200/80 hover:border-gray-300 transition-all hover:shadow-lg">
-                    <img
-                      src={item.image}
-                      alt={item.title}
-                      className="absolute h-full w-full object-cover object-center transition-transform duration-300 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 h-full bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                    <div className="absolute inset-x-0 bottom-0 flex flex-col items-start p-6 text-white md:p-8">
-                      <div className="mb-2 pt-4 text-xl font-semibold md:mb-3 md:pt-4 lg:pt-4">
-                        {item.title}
-                      </div>
-                      <div className="mb-8 line-clamp-2 md:mb-12 lg:mb-9 text-gray-200">
-                        {item.description}
-                      </div>
-                      <div className="flex items-center text-sm text-gray-300 group-hover:text-white transition-colors">
-                        View project{" "}
-                        <ArrowRight className="ml-2 size-5 transition-transform group-hover:translate-x-1" />
+        </ScrollAnimation>
+        
+        <ScrollAnimation animation="fadeIn" delay={200}>
+          <div className="relative flex w-full flex-col items-center justify-center overflow-hidden">
+          <div className="group flex overflow-hidden p-2 [--gap:1rem] [gap:var(--gap)] flex-row [--duration:60s]">
+            <div className="flex shrink-0 justify-around [gap:var(--gap)] animate-marquee flex-row group-hover:[animation-play-state:paused]">
+              {/* Duplicate projects for seamless loop */}
+              {items.map((item, i) => (
+                <div key={`first-${i}`} className="max-w-[320px] lg:max-w-[360px]">
+                  <a href={item.href} className="group rounded-xl block">
+                    <div className="group relative h-full min-h-[27rem] max-w-full overflow-hidden rounded-xl md:aspect-[5/4] lg:aspect-[16/9] border border-gray-200/80 hover:border-gray-300 transition-all hover:shadow-lg">
+                      <img
+                        src={item.image}
+                        alt={item.title}
+                        className="absolute h-full w-full object-cover object-center transition-transform duration-300 group-hover:scale-105"
+                      />
+                      <div className="absolute inset-0 h-full bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                      <div className="absolute inset-x-0 bottom-0 flex flex-col items-start p-6 text-white md:p-8">
+                        <div className="mb-2 pt-4 text-xl font-semibold md:mb-3 md:pt-4 lg:pt-4">
+                          {item.title}
+                        </div>
+                        <div className="mb-8 line-clamp-2 md:mb-12 lg:mb-9 text-gray-200">
+                          {item.description}
+                        </div>
+                        <div className="flex items-center text-sm text-gray-300 group-hover:text-white transition-colors">
+                          View project{" "}
+                          <ArrowRight className="ml-2 size-5 transition-transform group-hover:translate-x-1" />
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </a>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-        </Carousel>
-        <div className="mt-8 flex justify-center gap-2">
-          {items.map((_, index) => (
-            <button
-              key={index}
-              className={`h-2 w-2 rounded-full transition-colors ${
-                currentSlide === index ? "bg-gray-800" : "bg-gray-300"
-              }`}
-              onClick={() => carouselApi?.scrollTo(index)}
-              aria-label={`Go to slide ${index + 1}`}
-            />
-          ))}
-        </div>
+                  </a>
+                </div>
+              ))}
+              {items.map((item, i) => (
+                <div key={`second-${i}`} className="max-w-[320px] lg:max-w-[360px]">
+                  <a href={item.href} className="group rounded-xl block">
+                    <div className="group relative h-full min-h-[27rem] max-w-full overflow-hidden rounded-xl md:aspect-[5/4] lg:aspect-[16/9] border border-gray-200/80 hover:border-gray-300 transition-all hover:shadow-lg">
+                      <img
+                        src={item.image}
+                        alt={item.title}
+                        className="absolute h-full w-full object-cover object-center transition-transform duration-300 group-hover:scale-105"
+                      />
+                      <div className="absolute inset-0 h-full bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                      <div className="absolute inset-x-0 bottom-0 flex flex-col items-start p-6 text-white md:p-8">
+                        <div className="mb-2 pt-4 text-xl font-semibold md:mb-3 md:pt-4 lg:pt-4">
+                          {item.title}
+                        </div>
+                        <div className="mb-8 line-clamp-2 md:mb-12 lg:mb-9 text-gray-200">
+                          {item.description}
+                        </div>
+                        <div className="flex items-center text-sm text-gray-300 group-hover:text-white transition-colors">
+                          View project{" "}
+                          <ArrowRight className="ml-2 size-5 transition-transform group-hover:translate-x-1" />
+                        </div>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+              ))}
+            </div>
+          </div>
+
+            <div className="pointer-events-none absolute inset-y-0 left-0 hidden w-1/3 bg-gradient-to-r from-primary-50 sm:block" />
+            <div className="pointer-events-none absolute inset-y-0 right-0 hidden w-1/3 bg-gradient-to-l from-primary-50 sm:block" />
+          </div>
+        </ScrollAnimation>
       </div>
     </section>
   );

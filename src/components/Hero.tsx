@@ -1,4 +1,8 @@
 import { ArrowRight, Code, Zap, Target, Shield } from 'lucide-react';
+import { Button } from './ui/design-system/Button';
+import { Typography } from './ui/design-system/Typography';
+import { Card } from './ui/design-system/Card';
+import { ScrollAnimation } from './ui/ScrollAnimation';
 import WhyVrithLabs from './WhyVrithLabs';
 
 export default function Hero() {
@@ -10,69 +14,100 @@ export default function Hero() {
       </div>
 
       <div className="relative z-10 flex items-start justify-center min-h-screen pt-8 px-4">
-        <div className="w-full max-w-[960px] bg-[#f8f8f6] rounded-[32px] shadow-[0_20px_80px_rgba(0,0,0,0.3)] overflow-hidden">
-          <header className="flex items-center justify-between px-12 py-7">
-            <div className="flex items-center gap-2">
-              <span className="text-[22px] font-semibold tracking-tight">Vrith labs</span>
-            </div>
-            <nav className="flex items-center gap-9 text-[14px] font-medium">
-              <a href="#" className="text-gray-700 hover:text-black transition-colors">Process</a>
-              <a href="#" className="text-gray-700 hover:text-black transition-colors">Projects</a>
-              <a href="#" className="text-gray-700 hover:text-black transition-colors">Pricing</a>
-              <a href="#" className="text-gray-700 hover:text-black transition-colors">FAQ</a>
-            </nav>
-            <button className="bg-[#1a1a1a] text-white px-6 py-2.5 rounded-full text-[14px] font-medium hover:bg-black transition-colors">
-              Book a Slot
-            </button>
-          </header>
-
-          <div className="px-12 pt-8 pb-12">
-            <h1 className="text-[72px] leading-[1.05] font-normal mb-7 tracking-[-0.02em]">
-            From Concept  {' '}
-              
-              <br />to Users in 21 Days<br />
-              
-            </h1>
-
-            <p className="text-[15px] leading-[1.6] text-gray-700 mb-7 max-w-[680px]">
-            Founder-led, AI-powered, done-for-you MVPs and landing pages. From idea to launch, Vrith Labs moves at startup speed.
-            </p>
-
-            <div className="flex flex-wrap gap-2.5 mb-9">
-              <span className="inline-flex items-center gap-2 px-3.5 py-2 bg-white/60 backdrop-blur-sm border border-gray-200/50 rounded-full text-[13px] font-medium">
-                <Code size={14} />
-                TypeScript-first
-              </span>
-              <span className="inline-flex items-center gap-2 px-3.5 py-2 bg-white/60 backdrop-blur-sm border border-gray-200/50 rounded-full text-[13px] font-medium">
-                <Zap size={14} />
-                Edge-ready
-              </span>
-              <span className="inline-flex items-center gap-2 px-3.5 py-2 bg-white/60 backdrop-blur-sm border border-gray-200/50 rounded-full text-[13px] font-medium">
-                <Target size={14} />
-                AI-native
-              </span>
-              <span className="inline-flex items-center gap-2 px-3.5 py-2 bg-white/60 backdrop-blur-sm border border-gray-200/50 rounded-full text-[13px] font-medium">
-                <Shield size={14} />
-                Secure by default
-              </span>
-            </div>
-
-            <div className="flex gap-4">
-              <button className="bg-[#1a1a1a] text-white px-7 py-3 rounded-full text-[15px] font-medium flex items-center gap-2 hover:bg-black transition-all hover:shadow-lg">
+        <Card 
+          variant="glass" 
+          padding="xl" 
+          radius="xl" 
+          className="w-full max-w-[960px] shadow-brand overflow-hidden"
+        >
+          {/* Header */}
+          <ScrollAnimation animation="slideDown" delay={0}>
+            <header className="flex items-center justify-between mb-32">
+              <div className="flex items-center gap-2">
+                <Typography variant="heading-4" className="font-semibold text-[25px]">
+                  Vrith labs
+                </Typography>
+              </div>
+              <nav className="flex items-center gap-9">
+                <a href="#" className="text-sm font-medium text-gray-700 hover:text-primary-900 transition-colors duration-normal">
+                  Process
+                </a>
+                <a href="#" className="text-sm font-medium text-gray-700 hover:text-primary-900 transition-colors duration-normal">
+                  Projects
+                </a>
+                <a href="#" className="text-sm font-medium text-gray-700 hover:text-primary-900 transition-colors duration-normal">
+                  Pricing
+                </a>
+                <a href="#" className="text-sm font-medium text-gray-700 hover:text-primary-900 transition-colors duration-normal">
+                  FAQ
+                </a>
+              </nav>
+              <Button size="sm" variant="primary">
                 Book a Slot
-                <ArrowRight size={16} strokeWidth={2.5} />
-              </button>
-              <button className="bg-transparent text-[#1a1a1a] px-7 py-3 rounded-full text-[15px] font-medium hover:bg-black/5 transition-colors">
-                View work
-              </button>
-            </div>
-          </div>
+              </Button>
+            </header>
+          </ScrollAnimation>
 
-          {/* Why Vrith Labs Section - Black Box Inside White Container */}
-          <div className="px-12 pb-12 mt-8">
-            <WhyVrithLabs />
-          </div>
-        </div>
+          {/* Main Content */}
+          <ScrollAnimation animation="slideUp" delay={200}>
+            <div className="mb-8">
+              <Typography 
+                variant="display-1" 
+                className="mb-6"
+                as="h1"
+              >
+                From Concept {' '}
+                <br />to Users in 21 Days<br />
+              </Typography>
+
+              <Typography 
+                variant="body-large" 
+                color="muted" 
+                className="mb-6 max-w-[680px]"
+              >
+                Founder-led, AI-powered, done-for-you MVPs and landing pages. From idea to launch, Vrith Labs moves at startup speed.
+              </Typography>
+
+              {/* Feature Tags */}
+              <div className="flex flex-wrap gap-2 mb-8">
+                <span className="inline-flex items-center gap-2 px-3 py-2 bg-white/60 backdrop-blur-sm border border-gray-200/50 rounded-full text-xs font-medium">
+                  <Code size={14} />
+                  TypeScript-first
+                </span>
+                <span className="inline-flex items-center gap-2 px-3 py-2 bg-white/60 backdrop-blur-sm border border-gray-200/50 rounded-full text-xs font-medium">
+                  <Zap size={14} />
+                  Edge-ready
+                </span>
+                <span className="inline-flex items-center gap-2 px-3 py-2 bg-white/60 backdrop-blur-sm border border-gray-200/50 rounded-full text-xs font-medium">
+                  <Target size={14} />
+                  AI-native
+                </span>
+                <span className="inline-flex items-center gap-2 px-3 py-2 bg-white/60 backdrop-blur-sm border border-gray-200/50 rounded-full text-xs font-medium">
+                  <Shield size={14} />
+                  Secure by default
+                </span>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex gap-4">
+                <Button size="lg" variant="primary" className="flex items-center gap-2">
+                  Book a Slot
+                  <ArrowRight size={16} strokeWidth={2.5} />
+                </Button>
+                <Button size="lg" variant="secondary">
+                  View work
+                </Button>
+              </div>
+            </div>
+          </ScrollAnimation>
+
+          {/* Why Vrith Labs Section */}
+          <ScrollAnimation animation="fadeIn" delay={400}>
+            <div className="mt-8">
+              <WhyVrithLabs />
+            </div>
+          </ScrollAnimation>
+        </Card>
       </div>
     </div>
   );

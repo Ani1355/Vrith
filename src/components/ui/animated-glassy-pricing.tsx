@@ -189,7 +189,7 @@ export const PricingCard = ({
       </div>
       <div className="my-6 flex items-baseline gap-2">
         <span className="text-[48px] font-extralight text-[#1a1a1a] font-display">${price}</span>
-        <span className="text-[14px] text-gray-700 font-sans">/mo</span>
+        <span className="text-[14px] text-gray-700 font-sans">one-time</span>
       </div>
       <div className="card-divider w-full mb-5 h-px bg-[linear-gradient(90deg,transparent,rgba(0,0,0,0.1)_50%,transparent)]"></div>
       <ul className="flex flex-col gap-2 text-[14px] text-gray-700 mb-6 font-sans">

@@ -1,12 +1,14 @@
 import { Typography } from './ui/design-system/Typography';
 import { ScrollAnimation } from './ui/ScrollAnimation';
+import { ImageWithFallback } from './ui/ImageWithFallback';
+import { optimizeUnsplashUrl } from '@/lib/imageUtils';
 
 const vrithLabsTestimonials = [
   {
     author: {
       name: "Sarah Chen",
       handle: "@sarahstartup",
-      avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop&crop=face"
+      avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop&crop=face&auto=format&q=80"
     },
     text: "Vrith Labs delivered our MVP in just 18 days! The quality exceeded our expectations and we launched to 10K users in the first month.",
     href: "https://twitter.com/sarahstartup"
@@ -15,7 +17,7 @@ const vrithLabsTestimonials = [
     author: {
       name: "Marcus Rodriguez",
       handle: "@marcustech",
-      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face"
+      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face&auto=format&q=80"
     },
     text: "From concept to market in 21 days is no joke. Vrith Labs made it happen. Our fintech app is now processing $2M+ monthly transactions.",
     href: "https://twitter.com/marcustech"
@@ -24,7 +26,7 @@ const vrithLabsTestimonials = [
     author: {
       name: "Emily Watson",
       handle: "@emilyai",
-      avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop&crop=face"
+      avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop&crop=face&auto=format&q=80"
     },
     text: "The AI integration was seamless. Vrith Labs understood our vision and built exactly what we needed. Game-changing development speed.",
     href: "https://twitter.com/emilyai"
@@ -33,7 +35,7 @@ const vrithLabsTestimonials = [
     author: {
       name: "David Kim",
       handle: "@davidfounder",
-      avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face"
+      avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face&auto=format&q=80"
     },
     text: "Best investment we made. Vrith Labs turned our idea into a working product faster than any traditional agency could dream of.",
     href: "https://twitter.com/davidfounder"
@@ -42,7 +44,7 @@ const vrithLabsTestimonials = [
     author: {
       name: "Lisa Thompson",
       handle: "@lisasocial",
-      avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face"
+      avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face&auto=format&q=80"
     },
     text: "Our social platform MVP was ready in 14 days. The team's expertise in modern tech stacks saved us months of development time.",
     href: "https://twitter.com/lisasocial"
@@ -51,7 +53,7 @@ const vrithLabsTestimonials = [
     author: {
       name: "Alex Johnson",
       handle: "@alexhealth",
-      avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face"
+      avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face&auto=format&q=80"
     },
     text: "Healthcare compliance is complex, but Vrith Labs handled it perfectly. Our telemedicine platform launched without a hitch.",
     href: "https://twitter.com/alexhealth"
@@ -90,7 +92,14 @@ export const Testimonials = () => {
                 >
                   <div className="flex items-center gap-3">
                     <div className="h-12 w-12 shrink-0 overflow-hidden rounded-full">
-                      <img src={testimonial.author.avatar} alt={testimonial.author.name} className="aspect-square h-full w-full" />
+                      <ImageWithFallback
+                        src={optimizeUnsplashUrl(testimonial.author.avatar, { width: 150, height: 150, quality: 80 })}
+                        alt={`${testimonial.author.name} - ${testimonial.author.handle}`}
+                        className="aspect-square h-full w-full"
+                        fallbackText={testimonial.author.name.charAt(0)}
+                        loading="lazy"
+                        isAvatar={true}
+                      />
                     </div>
                     <div className="flex flex-col items-start">
                       <Typography variant="label" className="leading-none">
@@ -113,7 +122,14 @@ export const Testimonials = () => {
                 >
                   <div className="flex items-center gap-3">
                     <div className="h-12 w-12 shrink-0 overflow-hidden rounded-full">
-                      <img src={testimonial.author.avatar} alt={testimonial.author.name} className="aspect-square h-full w-full" />
+                      <ImageWithFallback
+                        src={optimizeUnsplashUrl(testimonial.author.avatar, { width: 150, height: 150, quality: 80 })}
+                        alt={`${testimonial.author.name} - ${testimonial.author.handle}`}
+                        className="aspect-square h-full w-full"
+                        fallbackText={testimonial.author.name.charAt(0)}
+                        loading="lazy"
+                        isAvatar={true}
+                      />
                     </div>
                     <div className="flex flex-col items-start">
                       <Typography variant="label" className="leading-none">

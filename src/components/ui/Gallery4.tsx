@@ -1,5 +1,7 @@
 import { ArrowRight } from "lucide-react";
 import { ScrollAnimation } from './ScrollAnimation';
+import { ImageWithFallback } from './ImageWithFallback';
+import { optimizeUnsplashUrl } from '@/lib/imageUtils';
 
 export interface Gallery4Item {
   id: string;
@@ -23,7 +25,7 @@ const data = [
       "A comprehensive mobile banking solution built with React Native and Node.js, featuring real-time transactions, AI-powered fraud detection, and seamless user experience for over 100K active users.",
     href: "#",
     image:
-      "https://images.unsplash.com/photo-1563013544-824ae1b704d3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2NDI3NzN8MHwxfGFsbHwxMjN8fHx8fHwyfHwxNzIzODA2OTM5fA&ixlib=rb-4.0.3&q=80&w=1080",
+      "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=1080&h=720&fit=crop&crop=center&auto=format&q=80",
   },
   {
     id: "ecommerce-platform",
@@ -32,7 +34,7 @@ const data = [
       "A scalable e-commerce platform built with Next.js and Supabase, featuring multi-vendor support, real-time inventory management, and integrated payment processing with 99.9% uptime.",
     href: "#",
     image:
-      "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2NDI3NzN8MHwxfGFsbHwxMjR8fHx8fHwyfHwxNzIzODA2OTM5fA&ixlib=rb-4.0.3&q=80&w=1080",
+      "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1080&h=720&fit=crop&crop=center&auto=format&q=80",
   },
   {
     id: "healthcare-saas",
@@ -41,7 +43,7 @@ const data = [
       "A HIPAA-compliant healthcare management system built with TypeScript and PostgreSQL, streamlining patient records, appointment scheduling, and telemedicine consultations for medical practices.",
     href: "#",
     image:
-      "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2NDI3NzN8MHwxfGFsbHwxNzd8fHx8fHwyfHwxNzIzNjM0NDc0fA&ixlib=rb-4.0.3&q=80&w=1080",
+      "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=1080&h=720&fit=crop&crop=center&auto=format&q=80",
   },
   {
     id: "ai-analytics",
@@ -50,7 +52,7 @@ const data = [
       "An intelligent analytics platform built with React and Python, providing real-time data visualization, predictive analytics, and automated reporting for enterprise clients across multiple industries.",
     href: "#",
     image:
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2NDI3NzN8MHwxfGFsbHwxMzF8fHx8fHwyfHwxNzIzNDM1MzA1fA&ixlib=rb-4.0.3&q=80&w=1080",
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1080&h=720&fit=crop&crop=center&auto=format&q=80",
   },
   {
     id: "logistics-platform",
@@ -59,7 +61,7 @@ const data = [
       "A comprehensive logistics management system built with Vue.js and Express.js, optimizing supply chain operations, tracking shipments in real-time, and reducing operational costs by 30%.",
     href: "#",
     image:
-      "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2NDI3NzN8MHwxfGFsbHwxMjV8fHx8fHwyfHwxNzIzNDM1Mjk4fA&ixlib=rb-4.0.3&q=80&w=1080",
+      "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1080&h=720&fit=crop&crop=center&auto=format&q=80",
   },
 ];
 
@@ -69,7 +71,7 @@ const Gallery4 = ({
   items = data,
 }: Gallery4Props) => {
   return (
-    <section className="py-20 px-4 bg-primary-50">
+    <section className="pt-32 pb-20 px-4 bg-primary-50">
       <div className="max-w-[1320px] mx-auto">
         <ScrollAnimation animation="slideUp">
           <div className="mb-8 flex items-end justify-between md:mb-14 lg:mb-16">
@@ -93,23 +95,30 @@ const Gallery4 = ({
               {items.map((item, i) => (
                 <div key={`first-${i}`} className="max-w-[320px] lg:max-w-[360px]">
                   <a href={item.href} className="group rounded-xl block">
-                    <div className="group relative h-full min-h-[27rem] max-w-full overflow-hidden rounded-xl md:aspect-[5/4] lg:aspect-[16/9] border border-gray-200/80 hover:border-gray-300 transition-all hover:shadow-lg">
-                      <img
-                        src={item.image}
-                        alt={item.title}
-                        className="absolute h-full w-full object-cover object-center transition-transform duration-300 group-hover:scale-105"
-                      />
-                      <div className="absolute inset-0 h-full bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                      <div className="absolute inset-x-0 bottom-0 flex flex-col items-start p-6 text-white md:p-8">
-                        <div className="mb-2 pt-4 text-xl font-semibold md:mb-3 md:pt-4 lg:pt-4">
+                    {/* Outer Box */}
+                    <div className="bg-gradient-to-br from-gray-700/50 to-gray-800/50 rounded-2xl p-6 relative group hover:from-gray-700/70 hover:to-gray-800/70 transition-all duration-300 cursor-pointer border border-white/10 backdrop-blur-sm">
+                      {/* Inner Box with Image */}
+                      <div className="relative h-48 w-full overflow-hidden rounded-xl mb-4">
+                        <ImageWithFallback
+                          src={optimizeUnsplashUrl(item.image, { width: 1080, height: 720, quality: 85 })}
+                          alt={`${item.title} - ${item.description}`}
+                          className="h-full w-full object-cover object-center transition-transform duration-300 group-hover:scale-105"
+                          fallbackText={item.title}
+                          loading="lazy"
+                        />
+                      </div>
+                      
+                      {/* Text Content Below Image */}
+                      <div className="text-gray-900">
+                        <h3 className="text-xl font-semibold mb-3 text-gray-900">
                           {item.title}
-                        </div>
-                        <div className="mb-8 line-clamp-2 md:mb-12 lg:mb-9 text-gray-200">
+                        </h3>
+                        <p className="text-sm text-gray-700 leading-relaxed mb-4 line-clamp-3">
                           {item.description}
-                        </div>
-                        <div className="flex items-center text-sm text-gray-300 group-hover:text-white transition-colors">
+                        </p>
+                        <div className="flex items-center text-sm text-gray-700 group-hover:text-gray-900 transition-colors">
                           View project{" "}
-                          <ArrowRight className="ml-2 size-5 transition-transform group-hover:translate-x-1" />
+                          <ArrowRight className="ml-2 size-4 transition-transform group-hover:translate-x-1" />
                         </div>
                       </div>
                     </div>
@@ -119,23 +128,30 @@ const Gallery4 = ({
               {items.map((item, i) => (
                 <div key={`second-${i}`} className="max-w-[320px] lg:max-w-[360px]">
                   <a href={item.href} className="group rounded-xl block">
-                    <div className="group relative h-full min-h-[27rem] max-w-full overflow-hidden rounded-xl md:aspect-[5/4] lg:aspect-[16/9] border border-gray-200/80 hover:border-gray-300 transition-all hover:shadow-lg">
-                      <img
-                        src={item.image}
-                        alt={item.title}
-                        className="absolute h-full w-full object-cover object-center transition-transform duration-300 group-hover:scale-105"
-                      />
-                      <div className="absolute inset-0 h-full bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                      <div className="absolute inset-x-0 bottom-0 flex flex-col items-start p-6 text-white md:p-8">
-                        <div className="mb-2 pt-4 text-xl font-semibold md:mb-3 md:pt-4 lg:pt-4">
+                    {/* Outer Box */}
+                    <div className="bg-gradient-to-br from-gray-700/50 to-gray-800/50 rounded-2xl p-6 relative group hover:from-gray-700/70 hover:to-gray-800/70 transition-all duration-300 cursor-pointer border border-white/10 backdrop-blur-sm">
+                      {/* Inner Box with Image */}
+                      <div className="relative h-48 w-full overflow-hidden rounded-xl mb-4">
+                        <ImageWithFallback
+                          src={optimizeUnsplashUrl(item.image, { width: 1080, height: 720, quality: 85 })}
+                          alt={`${item.title} - ${item.description}`}
+                          className="h-full w-full object-cover object-center transition-transform duration-300 group-hover:scale-105"
+                          fallbackText={item.title}
+                          loading="lazy"
+                        />
+                      </div>
+                      
+                      {/* Text Content Below Image */}
+                      <div className="text-gray-900">
+                        <h3 className="text-xl font-semibold mb-3 text-gray-900">
                           {item.title}
-                        </div>
-                        <div className="mb-8 line-clamp-2 md:mb-12 lg:mb-9 text-gray-200">
+                        </h3>
+                        <p className="text-sm text-gray-700 leading-relaxed mb-4 line-clamp-3">
                           {item.description}
-                        </div>
-                        <div className="flex items-center text-sm text-gray-300 group-hover:text-white transition-colors">
+                        </p>
+                        <div className="flex items-center text-sm text-gray-700 group-hover:text-gray-900 transition-colors">
                           View project{" "}
-                          <ArrowRight className="ml-2 size-5 transition-transform group-hover:translate-x-1" />
+                          <ArrowRight className="ml-2 size-4 transition-transform group-hover:translate-x-1" />
                         </div>
                       </div>
                     </div>

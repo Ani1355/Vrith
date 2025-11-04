@@ -77,14 +77,6 @@ export default {
       
       // Color Palette
       colors: {
-        // Primary Brand Colors
-        primary: {
-          50: 'var(--color-primary-50)',
-          100: 'var(--color-primary-100)',
-          900: 'var(--color-primary-900)',
-          950: 'var(--color-primary-950)',
-        },
-        
         // Semantic Colors
         accent: 'var(--color-accent)',
         success: 'var(--color-success)',
@@ -114,6 +106,11 @@ export default {
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
+          // Primary Brand Colors (merged)
+          50: 'var(--color-primary-50)',
+          100: 'var(--color-primary-100)',
+          900: 'var(--color-primary-900)',
+          950: 'var(--color-primary-950)',
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
@@ -126,10 +123,6 @@ export default {
         muted: {
           DEFAULT: "hsl(var(--muted))",
           foreground: "hsl(var(--muted-foreground))",
-        },
-        accent: {
-          DEFAULT: "hsl(var(--accent))",
-          foreground: "hsl(var(--accent-foreground))",
         },
         popover: {
           DEFAULT: "hsl(var(--popover))",

@@ -44,24 +44,31 @@ export default function Hero() {
                 <button 
                   onClick={() => scrollToSection('process')}
                   className="text-sm font-medium text-gray-700 hover:text-primary-900 transition-colors duration-normal"
+                  aria-label="Navigate to Process section"
                 >
                   Process
                 </button>
                 <button 
                   onClick={() => scrollToSection('projects')}
                   className="text-sm font-medium text-gray-700 hover:text-primary-900 transition-colors duration-normal"
+                  aria-label="Navigate to Projects section"
                 >
                   Projects
                 </button>
                 <button 
                   onClick={() => scrollToSection('pricing')}
                   className="text-sm font-medium text-gray-700 hover:text-primary-900 transition-colors duration-normal"
+                  aria-label="Navigate to Pricing section"
                 >
                   Pricing
                 </button>
-                <a href="#" className="text-sm font-medium text-gray-700 hover:text-primary-900 transition-colors duration-normal">
-                  FAQ
-                </a>
+                <button 
+                  onClick={() => scrollToSection('testimonials')}
+                  className="text-sm font-medium text-gray-700 hover:text-primary-900 transition-colors duration-normal"
+                  aria-label="Navigate to Testimonials section"
+                >
+                  Testimonials
+                </button>
               </nav>
               
               {/* Empty div for balance */}

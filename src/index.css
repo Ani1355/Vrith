@@ -2,9 +2,26 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Global smooth scrolling */
+/* Global smooth scrolling with optimizations */
 html {
   scroll-behavior: smooth;
+  /* Optional: Enable scroll snap for better section isolation */
+  /* Uncomment the lines below to enable scroll-snap */
+  /* scroll-snap-type: y proximity; */
+  /* scroll-padding-top: 96px; */
+}
+
+/* Smooth scrolling with reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 @layer base {
@@ -164,5 +181,32 @@ html {
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+  
+  /* Section scroll utilities for pixel-perfect navigation */
+  .section-scroll {
+    scroll-margin-top: -10px; /* Negative margin scrolls slightly past section top */
+    /* Optional: Enable for individual section snap alignment */
+    /* scroll-snap-align: start; */
+    /* scroll-snap-stop: normal; */
+  }
+  
+  /* Consistent section spacing */
+  .section-spacing {
+    @apply pt-32 pb-20 px-4;
+  }
+  
+  /* Section with clean background isolation */
+  .section-isolated {
+    @apply relative;
+    /* Add negative margin to overlap and hide previous section's bottom padding */
+    margin-top: -5rem; /* -80px to overlap pb-20 */
+    padding-top: calc(8rem + 5rem); /* pt-32 + overlap = 128px + 80px = 208px total */
+  }
+  
+  /* Section with scroll snap enabled */
+  .section-snap {
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
   }
 }

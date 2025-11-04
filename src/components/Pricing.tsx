@@ -39,7 +39,7 @@ const vrithLabsPricingPlans: PricingCardProps[] = [
 
 export const Pricing = () => {
   return (
-    <section className="pt-32 pb-20 px-4 bg-primary-50">
+    <section className="section-spacing bg-primary-50">
       <div className="max-w-container mx-auto">
         <ScrollAnimation animation="slideUp">
           <div className="mb-16 flex items-end justify-between">

@@ -71,7 +71,7 @@ export default function Process() {
   };
 
   return (
-    <div className="pt-32 pb-20 px-4 bg-primary-50">
+    <div className="pt-40 pb-20 px-4 bg-primary-50">
       <div className="max-w-[1320px] mx-auto">
         <ScrollAnimation animation="slideUp">
           <div className="bg-gradient-to-br from-[#1a1a1a] to-[#0a0a0a] rounded-[32px] p-12 text-white shadow-2xl">

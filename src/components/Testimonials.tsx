@@ -1,6 +1,6 @@
 import { Typography } from './ui/design-system/Typography';
 import { ScrollAnimation } from './ui/ScrollAnimation';
-import { ImageWithFallback } from './ui/ImageWithFallback';
+import { LazyImage } from './ui/LazyImage';
 import { optimizeUnsplashUrl } from '@/lib/imageUtils';
 
 const vrithLabsTestimonials = [
@@ -62,7 +62,7 @@ const vrithLabsTestimonials = [
 
 export const Testimonials = () => {
   return (
-    <section className="py-20 px-4 bg-primary-50">
+    <section className="section-spacing bg-primary-50">
       <div className="max-w-container mx-auto">
         <ScrollAnimation animation="slideUp">
           <div className="mb-16 flex items-end justify-between">
@@ -92,7 +92,7 @@ export const Testimonials = () => {
                 >
                   <div className="flex items-center gap-3">
                     <div className="h-12 w-12 shrink-0 overflow-hidden rounded-full">
-                      <ImageWithFallback
+                      <LazyImage
                         src={optimizeUnsplashUrl(testimonial.author.avatar, { width: 150, height: 150, quality: 80 })}
                         alt={`${testimonial.author.name} - ${testimonial.author.handle}`}
                         className="aspect-square h-full w-full"
@@ -122,7 +122,7 @@ export const Testimonials = () => {
                 >
                   <div className="flex items-center gap-3">
                     <div className="h-12 w-12 shrink-0 overflow-hidden rounded-full">
-                      <ImageWithFallback
+                      <LazyImage
                         src={optimizeUnsplashUrl(testimonial.author.avatar, { width: 150, height: 150, quality: 80 })}
                         alt={`${testimonial.author.name} - ${testimonial.author.handle}`}
                         className="aspect-square h-full w-full"

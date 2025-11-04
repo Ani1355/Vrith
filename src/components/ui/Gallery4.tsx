@@ -1,6 +1,6 @@
 import { ArrowRight } from "lucide-react";
 import { ScrollAnimation } from './ScrollAnimation';
-import { ImageWithFallback } from './ImageWithFallback';
+import { LazyImage } from './LazyImage';
 import { optimizeUnsplashUrl } from '@/lib/imageUtils';
 
 export interface Gallery4Item {
@@ -71,7 +71,7 @@ const Gallery4 = ({
   items = data,
 }: Gallery4Props) => {
   return (
-    <section className="pt-32 pb-20 px-4 bg-primary-50">
+    <section className="section-spacing bg-primary-50">
       <div className="max-w-[1320px] mx-auto">
         <ScrollAnimation animation="slideUp">
           <div className="mb-8 flex items-end justify-between md:mb-14 lg:mb-16">
@@ -99,7 +99,7 @@ const Gallery4 = ({
                     <div className="bg-gradient-to-br from-gray-700/50 to-gray-800/50 rounded-2xl p-6 relative group hover:from-gray-700/70 hover:to-gray-800/70 transition-all duration-300 cursor-pointer border border-white/10 backdrop-blur-sm">
                       {/* Inner Box with Image */}
                       <div className="relative h-48 w-full overflow-hidden rounded-xl mb-4">
-                        <ImageWithFallback
+                        <LazyImage
                           src={optimizeUnsplashUrl(item.image, { width: 1080, height: 720, quality: 85 })}
                           alt={`${item.title} - ${item.description}`}
                           className="h-full w-full object-cover object-center transition-transform duration-300 group-hover:scale-105"
@@ -132,7 +132,7 @@ const Gallery4 = ({
                     <div className="bg-gradient-to-br from-gray-700/50 to-gray-800/50 rounded-2xl p-6 relative group hover:from-gray-700/70 hover:to-gray-800/70 transition-all duration-300 cursor-pointer border border-white/10 backdrop-blur-sm">
                       {/* Inner Box with Image */}
                       <div className="relative h-48 w-full overflow-hidden rounded-xl mb-4">
-                        <ImageWithFallback
+                        <LazyImage
                           src={optimizeUnsplashUrl(item.image, { width: 1080, height: 720, quality: 85 })}
                           alt={`${item.title} - ${item.description}`}
                           className="h-full w-full object-cover object-center transition-transform duration-300 group-hover:scale-105"
